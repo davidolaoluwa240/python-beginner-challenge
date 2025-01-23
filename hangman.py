@@ -26,7 +26,7 @@ def get_hidden_word():
     Function to print message to the screen
 '''
 def print_msg(msg):
-    # Pause for 1 seconds
+    # Pause for 2 seconds
     time.sleep(2)
 
     # Clear terminal
