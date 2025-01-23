@@ -7,6 +7,8 @@ import platform
 import time
 from random import choice
 
+msg_delay_sec = 2
+
 '''
     Function to clear terminal
 '''
@@ -26,8 +28,8 @@ def get_hidden_word():
     Function to print message to the screen
 '''
 def print_msg(msg):
-    # Pause for 2 seconds
-    time.sleep(2)
+    # Pause for number of sec
+    time.sleep(msg_delay_sec)
 
     # Clear terminal
     clear_terminal()
@@ -97,6 +99,16 @@ def handle_user_guess_correct(hidden_guess, user_guess, user_correct_guess):
             user_correct_guess[i] = user_guess
 
 '''
+    Function to continue playing hangman game
+'''
+def handle_continue_playing():
+    should_continue = input("Will u like to continue playing (y/n): ").lower()
+
+    # Check if user will continue playing
+    if should_continue == "y": hangman()
+    else: print('Exiting')
+
+'''
     Function for the hangman game
 '''
 def hangman():
@@ -144,11 +156,14 @@ def hangman():
     else:
         # Check if user guessed the hidden word
         if user_correct_guess_str == hidden_guess:
-            print_msg(f"YOU WON 🔥🔥: ({hidden_guess})")
+            print_msg(f"YOU WON 🔥🔥: ({hidden_guess.upper()})")
 
         # Check if user could not guessed the hidden word
         if attempts_left == 0:
-            print_msg(f"YOU LOSE 😢: ({hidden_guess}) is the hidden word")
+            print_msg(f"YOU LOSE 😢: ({hidden_guess.upper()}) is the hidden word")
+
+        # Handle continue playing game
+        handle_continue_playing()
 
 # Start Game
 hangman()
